@@ -1,0 +1,17 @@
+.build/
+.gradle/
+.kotlin/
+**/build/
+**/.gradle/
+**/.kotlin/
+**/local.properties
+**/app/libs/
+*.aar
+*.apk
+*.p12
+*.keystore
+*.jks
+.signing/
+.env*
+__pycache__/
+core-build-transport15/libbox*-sources.jar

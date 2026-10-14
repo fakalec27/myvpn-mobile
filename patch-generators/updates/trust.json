@@ -1,0 +1,5 @@
+{
+  "endpoint": "https://updates.example.invalid",
+  "manifestPublicKey": "",
+  "apkSigner": ""
+}

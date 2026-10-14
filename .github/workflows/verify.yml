@@ -1,0 +1,33 @@
+name: Verify sources
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  native-tests:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.26.8'
+      - name: Go transport regression cases
+        shell: pwsh
+        run: go test -C core-build-transport15 -tags 'with_awg,with_xhttp,with_utls,with_clash_api' ./protocol/group ./protocol/ssh ./common/urltest ./experimental/cachefile
+  android:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.26.8'
+      - uses: android-actions/setup-android@v3
+      - name: Required Android SDK components
+        shell: pwsh
+        run: sdkmanager 'platforms;android-37.1' 'build-tools;37.0.0-rc1' 'ndk;28.0.13004108'
+      - name: Build corresponding sources and run JVM tests
+        shell: pwsh
+        run: ./build.ps1 -Native

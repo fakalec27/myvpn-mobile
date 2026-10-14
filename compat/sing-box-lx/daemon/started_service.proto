@@ -1,0 +1,1151 @@
+syntax = "proto3";
+
+package daemon;
+option go_package = "github.com/sagernet/sing-box/daemon";
+
+import "google/protobuf/empty.proto";
+
+service StartedService {
+  rpc GetVersion(google.protobuf.Empty) returns(Version) {}
+  rpc SubscribeServiceStatus(google.protobuf.Empty) returns(stream ServiceStatus) {}
+  rpc SubscribeLog(google.protobuf.Empty) returns(stream Log) {}
+  rpc GetDefaultLogLevel(google.protobuf.Empty) returns(DefaultLogLevel) {}
+  rpc ClearLogs(google.protobuf.Empty) returns(google.protobuf.Empty) {}
+  rpc SubscribeStatus(SubscribeStatusRequest) returns(stream Status) {}
+  rpc SubscribeGroups(google.protobuf.Empty) returns(stream Groups) {}
+
+  rpc GetClashModeStatus(google.protobuf.Empty) returns(ClashModeStatus) {}
+  rpc SubscribeClashMode(google.protobuf.Empty) returns(stream ClashMode) {}
+  rpc SetClashMode(ClashMode) returns(google.protobuf.Empty) {}
+
+  rpc URLTest(URLTestRequest) returns(google.protobuf.Empty) {}
+  rpc SelectOutbound(SelectOutboundRequest) returns (google.protobuf.Empty) {}
+  rpc SetGroupExpand(SetGroupExpandRequest) returns (google.protobuf.Empty) {}
+
+  rpc SubscribeConnections(SubscribeConnectionsRequest) returns(stream ConnectionEvents) {}
+  rpc CloseConnection(CloseConnectionRequest) returns(google.protobuf.Empty) {}
+  rpc CloseAllConnections(google.protobuf.Empty) returns(google.protobuf.Empty) {}
+  rpc GetDeprecatedWarnings(google.protobuf.Empty) returns(DeprecatedWarnings) {}
+  rpc GetStartedAt(google.protobuf.Empty) returns(StartedAt) {}
+
+  rpc SubscribeOutbounds(google.protobuf.Empty) returns (stream OutboundList) {}
+  rpc StartNetworkQualityTest(NetworkQualityTestRequest) returns (stream NetworkQualityTestProgress) {}
+  rpc StartSTUNTest(STUNTestRequest) returns (stream STUNTestProgress) {}
+  rpc SubscribeTailscaleStatus(google.protobuf.Empty) returns (stream TailscaleStatusUpdate) {}
+  rpc StartTailscalePing(TailscalePingRequest) returns (stream TailscalePingResponse) {}
+  rpc SetTailscaleExitNode(SetTailscaleExitNodeRequest) returns (google.protobuf.Empty) {}
+  rpc TailscaleLogout(TailscaleLogoutRequest) returns (google.protobuf.Empty) {}
+  rpc GetTailscaleCertificate(TailscaleCertificateRequest) returns (TailscaleCertificate) {}
+  rpc StartTailscaleSSHSession(stream TailscaleSSHClientMessage) returns (stream TailscaleSSHServerMessage) {}
+  rpc SubscribeTaildropInbox(SubscribeTaildropInboxRequest) returns (stream TaildropInbox) {}
+  rpc MarkTaildropInboxRead(MarkTaildropInboxReadRequest) returns (google.protobuf.Empty) {}
+  rpc SendTaildropFiles(stream TaildropSendClientMessage) returns (stream TaildropSendServerMessage) {}
+  rpc DownloadTaildropFile(DownloadTaildropFileRequest) returns (stream DownloadTaildropFileChunk) {}
+  rpc DeleteTaildropFile(DeleteTaildropFileRequest) returns (google.protobuf.Empty) {}
+  rpc CancelTaildropReceiving(CancelTaildropReceivingRequest) returns (google.protobuf.Empty) {}
+  rpc ProvideUSBDevices(stream USBProviderMessage) returns (stream USBServerMessage) {}
+  rpc SubscribeUSBIPServerStatus(google.protobuf.Empty) returns (stream USBIPServerStatusUpdate) {}
+  rpc SubscribeOpenConnectStatus(google.protobuf.Empty) returns (stream OpenConnectStatusUpdate) {}
+  rpc SubmitOpenConnectAuthResponse(OpenConnectAuthResponseSubmission) returns (google.protobuf.Empty) {}
+  rpc CancelOpenConnectAuthChallenge(OpenConnectAuthChallengeCancel) returns (google.protobuf.Empty) {}
+  rpc SubscribeOpenVPNStatus(google.protobuf.Empty) returns (stream OpenVPNStatusUpdate) {}
+  rpc SubmitOpenVPNChallengeResponse(OpenVPNChallengeSubmission) returns (google.protobuf.Empty) {}
+  rpc CancelOpenVPNChallenge(OpenVPNChallengeCancel) returns (google.protobuf.Empty) {}
+  rpc SubscribeNotifications(google.protobuf.Empty) returns (stream NotificationEvent) {}
+
+  // lx:begin lx_command
+
+  rpc URLTestOutbound(URLTestOutboundRequest) returns (URLTestOutboundResponse) {}
+  rpc GetRules(google.protobuf.Empty) returns (RuleList) {}
+  rpc GetGroups(google.protobuf.Empty) returns (Groups) {}
+  rpc GetOutbounds(google.protobuf.Empty) returns (OutboundList) {}
+  rpc SubscribeDNSQueries(SubscribeDNSQueriesRequest) returns (stream DnsQueryEvent) {}
+  rpc GetPool(GetPoolRequest) returns (PoolList) {}
+  rpc GetDNSGroups(google.protobuf.Empty) returns (DnsGroupList) {}
+  rpc GetRunningConfig(google.protobuf.Empty) returns (RunningConfig) {}
+  rpc GetURLViaOutbound(GetURLViaOutboundRequest) returns (GetURLViaOutboundResponse) {}
+  rpc GetChains(google.protobuf.Empty) returns (ChainList) {}
+  rpc SetChainPositionEnabled(SetChainPositionEnabledRequest) returns (SetChainPositionEnabledResponse) {}
+  rpc GetChainCloneConfig(GetChainCloneConfigRequest) returns (RunningConfig) {}
+  rpc SetEndpointEnabled(SetEndpointEnabledRequest) returns (SetEndpointEnabledResponse) {}
+  // Per-endpoint status snapshots (SPEC 114, SPEC 115): one unary getter per
+  // endpoint type, so GetOutbounds stays a plain node list.
+  rpc GetWireGuardStatus(WireGuardStatusRequest) returns (WireGuardEndpointStatus) {}
+  rpc GetTailscaleStatus(TailscaleStatusRequest) returns (TailscaleEndpointStatus) {}
+
+  // lx:end lx_command
+}
+
+message Version {
+  string version = 1;
+  int32 apiVersion = 2;
+}
+
+message ServiceStatus {
+  enum Type {
+    IDLE = 0;
+    STARTING = 1;
+    STARTED = 2;
+    STOPPING = 3;
+    FATAL = 4;
+  }
+  Type status = 1;
+  string errorMessage = 2;
+}
+
+message SubscribeStatusRequest {
+  int64 interval = 1;
+}
+
+enum LogLevel {
+  PANIC = 0;
+  FATAL = 1;
+  ERROR = 2;
+  WARN = 3;
+  INFO = 4;
+  DEBUG = 5;
+  TRACE = 6;
+}
+
+message Log {
+  repeated Message messages = 1;
+  bool reset = 2;
+  message Message {
+    LogLevel level = 1;
+    string message = 2;
+  }
+}
+
+message DefaultLogLevel {
+  LogLevel level = 1;
+}
+
+message Status {
+  uint64 memory = 1;
+  int32 goroutines = 2;
+  int32 connectionsIn = 3;
+  int32 connectionsOut = 4;
+  bool trafficAvailable = 5;
+  int64 uplink = 6;
+  int64 downlink = 7;
+  int64 uplinkTotal = 8;
+  int64 downlinkTotal = 9;
+}
+
+message Groups {
+  repeated Group group = 1;
+}
+
+message Group {
+  string tag = 1;
+  string type = 2;
+  bool selectable = 3;
+  // The group's current node. For a selector and for urltest mode: least_test this is
+  // THE selected node. For urltest mode: round_robin there is no single current node —
+  // the field carries the last node the balancer happened to pick, so treat it as a hint
+  // and read the full rotation state via GetPool. lx: SPEC 019 v2.
+  string selected = 4;
+  bool isExpand = 5;
+  repeated GroupItem items = 6;
+
+  // lx:begin lx_command
+
+  // urltest mode: "least_test" | "round_robin". Empty for every non-urltest group
+  // (selector), so it doubles as "is this group balanced at all" without probing GetPool
+  // — which is gated behind the with_lx_command build tag. lx: SPEC 019 v2.
+  string mode = 7;
+
+  // lx:end lx_command
+}
+
+message GroupItem {
+  string tag = 1;
+  string type = 2;
+  int64 urlTestTime = 3;
+  int32 urlTestDelay = 4;
+
+  // lx:begin lx_command
+
+  // WG/AWG endpoint state: never_built / building / up / asleep / torn_down /
+  // down / disabled; empty for every other outbound. Filled by GetOutbounds
+  // only. lx: SPEC 097, disabled — SPEC 106.
+  string endpointState = 5;
+  // Seconds since the last dial through the endpoint; 0 for every other
+  // outbound. lx: SPEC 097.
+  int64 idleSinceSeconds = 6;
+  // 7 carried WG/AWG peers in rc.1 of SPEC 114; they moved to
+  // GetWireGuardStatus → WireGuardEndpointStatus.peers.
+  reserved 7;
+
+  // lx:end lx_command
+}
+
+message URLTestRequest {
+  string outboundTag = 1;
+}
+
+message SelectOutboundRequest {
+  string groupTag = 1;
+  string outboundTag = 2;
+}
+
+message SetGroupExpandRequest {
+  string groupTag = 1;
+  bool isExpand = 2;
+}
+
+message ClashMode {
+  string mode = 3;
+}
+
+message ClashModeStatus {
+  repeated string modeList = 1;
+  string currentMode = 2;
+}
+
+message SubscribeConnectionsRequest {
+  int64 interval = 1;
+}
+
+enum ConnectionEventType {
+  CONNECTION_EVENT_NEW = 0;
+  CONNECTION_EVENT_UPDATE = 1;
+  CONNECTION_EVENT_CLOSED = 2;
+}
+
+message ConnectionEvent {
+  ConnectionEventType type = 1;
+  string id = 2;
+  Connection connection = 3;
+  int64 uplinkDelta = 4;
+  int64 downlinkDelta = 5;
+  int64 closedAt = 6;
+}
+
+message ConnectionEvents {
+  repeated ConnectionEvent events = 1;
+  bool reset = 2;
+}
+
+message Connection {
+  string id = 1;
+  string inbound = 2;
+  string inboundType = 3;
+  int32 ipVersion = 4;
+  string network = 5;
+  string source = 6;
+  string destination = 7;
+  string domain = 8;
+  string protocol = 9;
+  string user = 10;
+  string fromOutbound = 11;
+  int64 createdAt = 12;
+  int64 closedAt = 13;
+  int64 uplink = 14;
+  int64 downlink = 15;
+  int64 uplinkTotal = 16;
+  int64 downlinkTotal = 17;
+  string rule = 18;
+  string outbound = 19;
+  string outboundType = 20;
+  repeated string chainList = 21;
+  ProcessInfo processInfo = 22;
+  // lx: SPEC 017 — transport detour tail of the final outbound (Chain omits it by
+  // design). Order: final outbound → outward. Empty for outbounds without a detour.
+  repeated string detourList = 23;
+}
+
+message ProcessInfo {
+  uint32 processId = 1;
+  int32 userId = 2;
+  string userName = 3;
+  string processPath = 4;
+  repeated string packageNames = 5;
+}
+
+message CloseConnectionRequest {
+  string id = 1;
+}
+
+message DeprecatedWarnings {
+  repeated DeprecatedWarning warnings = 1;
+}
+
+message DeprecatedWarning {
+  string message = 1;
+  bool impending = 2;
+  string migrationLink = 3;
+  string description = 4;
+  string deprecatedVersion = 5;
+  string scheduledVersion = 6;
+}
+
+message StartedAt {
+  int64 startedAt = 1;
+}
+
+message OutboundList {
+  repeated GroupItem outbounds = 1;
+}
+
+message NetworkQualityTestRequest {
+  string configURL = 1;
+  string outboundTag = 2;
+  bool serial = 3;
+  int32 maxRuntimeSeconds = 4;
+  bool http3 = 5;
+}
+
+message NetworkQualityTestProgress {
+  int32 phase = 1;
+  int64 downloadCapacity = 2;
+  int64 uploadCapacity = 3;
+  int32 downloadRPM = 4;
+  int32 uploadRPM = 5;
+  int32 idleLatencyMs = 6;
+  int64 elapsedMs = 7;
+  bool isFinal = 8;
+  string error = 9;
+  int32 downloadCapacityAccuracy = 10;
+  int32 uploadCapacityAccuracy = 11;
+  int32 downloadRPMAccuracy = 12;
+  int32 uploadRPMAccuracy = 13;
+}
+
+message STUNTestRequest {
+  string server = 1;
+  string outboundTag = 2;
+}
+
+message STUNTestProgress {
+  int32 phase = 1;
+  string externalAddr = 2;
+  int32 latencyMs = 3;
+  int32 natMapping = 4;
+  int32 natFiltering = 5;
+  bool isFinal = 6;
+  string error = 7;
+  bool natTypeSupported = 8;
+}
+
+message TailscaleStatusUpdate {
+  repeated TailscaleEndpointStatus endpoints = 1;
+}
+
+message TailscaleEndpointStatus {
+  string endpointTag = 1;
+  string backendState = 2;
+  string stateText = 3;
+  string authURL = 4;
+  string networkName = 5;
+  string magicDNSSuffix = 6;
+  TailscalePeer self = 7;
+  repeated TailscaleUserGroup userGroups = 8;
+  TailscalePeer exitNode = 9;
+  bool keyAuth = 10;
+  bool canShareFiles = 11;
+  int32 waitingFileCount = 12;
+  int32 receivingFileCount = 13;
+  int32 unreadFileCount = 14;
+  repeated string certDomains = 15;
+  // lx:begin lx_command
+  // Health warnings from the Tailscale backend (no DERP connection, exit node
+  // offline, ...); empty when healthy. lx: SPEC 115.
+  repeated string health = 16;
+  // lx:end lx_command
+}
+
+message TailscaleUserGroup {
+  int64 userID = 1;
+  string loginName = 2;
+  string displayName = 3;
+  string profilePicURL = 4;
+  repeated TailscalePeer peers = 5;
+}
+
+message TailscalePeer {
+  string hostName = 1;
+  string dnsName = 2;
+  string os = 3;
+  repeated string tailscaleIPs = 4;
+  bool online = 5;
+  bool exitNode = 6;
+  bool exitNodeOption = 7;
+  bool active = 8;
+  int64 rxBytes = 9;
+  int64 txBytes = 10;
+  int64 keyExpiry = 11;
+  string stableID = 12;
+  bool expired = 13;
+  repeated string sshHostKeys = 14;
+  bool shareeNode = 15;
+  int64 lastSeen = 16;
+  bool canReceiveFiles = 17;
+  // lx:begin lx_command
+  // Path to the peer as magicsock would send right now (SPEC 115). The verdict
+  // is the core's: endpoint set → DIRECT; else peerRelay set → PEER_RELAY; else
+  // the node has ever sent to the peer → DERP; else NONE. Fresh on every
+  // GetTailscaleStatus; in SubscribeTailscaleStatus it is the snapshot taken at
+  // the last event. Field names match TailscalePingResponse.
+  TailscalePeerPath path = 18;
+  string endpoint = 19;        // ip:port of the direct UDP path; empty otherwise
+  string peerRelay = 20;       // ip:port:vni of the peer relay; empty otherwise
+  string derpRegionCode = 21;  // peer's home DERP region; also set when direct; empty until known
+  int64 lastHandshake = 22;    // Unix seconds of the last WireGuard handshake; 0 = none yet
+  // lx:end lx_command
+}
+
+message TailscalePingRequest {
+  string endpointTag = 1;
+  string peerIP = 2;
+}
+
+message TailscalePingResponse {
+  double latencyMs = 1;
+  bool isDirect = 2;
+  string endpoint = 3;
+  int32 derpRegionID = 4;
+  string derpRegionCode = 5;
+  string error = 6;
+  string peerRelay = 7;
+}
+
+message SetTailscaleExitNodeRequest {
+  string endpointTag = 1;
+  string stableID = 2;
+}
+
+message TailscaleLogoutRequest {
+  string endpointTag = 1;
+}
+
+message TailscaleCertificateRequest {
+  string endpointTag = 1;
+  string domain = 2;
+  int64 minValiditySeconds = 3;
+}
+
+message TailscaleCertificate {
+  bytes certificatePEM = 1;
+  bytes privateKeyPEM = 2;
+}
+
+message TailscaleSSHClientMessage {
+  oneof message {
+    TailscaleSSHStart start = 1;
+    TailscaleSSHInput input = 2;
+    TailscaleSSHResize resize = 3;
+  }
+}
+
+message TailscaleSSHStart {
+  string endpointTag = 1;
+  string peerAddress = 2;
+  string username = 3;
+  string terminalType = 4;
+  int32 columns = 5;
+  int32 rows = 6;
+  int32 widthPixels = 7;
+  int32 heightPixels = 8;
+  repeated string hostKeys = 9;
+  bool forward_agent = 10;
+}
+
+message TailscaleSSHInput {
+  bytes data = 1;
+}
+
+message TailscaleSSHResize {
+  int32 columns = 1;
+  int32 rows = 2;
+  int32 widthPixels = 3;
+  int32 heightPixels = 4;
+}
+
+message TailscaleSSHServerMessage {
+  oneof message {
+    TailscaleSSHAuthBanner authBanner = 1;
+    TailscaleSSHReady ready = 2;
+    TailscaleSSHOutput output = 3;
+    TailscaleSSHExit exit = 4;
+    TailscaleSSHError error = 5;
+  }
+}
+
+message TailscaleSSHAuthBanner {
+  string message = 1;
+}
+
+message TailscaleSSHReady {
+}
+
+message TailscaleSSHOutput {
+  bytes data = 1;
+}
+
+message TailscaleSSHExit {
+  int32 exitCode = 1;
+  string signal = 2;
+  string errorMessage = 3;
+}
+
+message TailscaleSSHError {
+  string message = 1;
+}
+
+message SubscribeTaildropInboxRequest {
+  string endpointTag = 1;
+}
+
+message MarkTaildropInboxReadRequest {
+  string endpointTag = 1;
+}
+
+message TaildropInbox {
+  string endpointTag = 1;
+  repeated TaildropFile files = 2;
+  repeated TaildropReceivingFile receiving = 3;
+}
+
+message TaildropFile {
+  string name = 1;
+  int64 size = 2;
+  string senderName = 3;
+  int64 modifiedAt = 4;
+}
+
+message TaildropReceivingFile {
+  string name = 1;
+  int64 size = 2;
+  int64 receivedBytes = 3;
+  string senderID = 4;
+  string senderName = 5;
+}
+
+message TaildropSendClientMessage {
+  oneof message {
+    TaildropSendStart start = 1;
+    TaildropFileChunk chunk = 2;
+    TaildropFileDone fileDone = 3;
+  }
+}
+
+message TaildropSendStart {
+  string endpointTag = 1;
+  string peerStableID = 2;
+  repeated TaildropOutgoingFile files = 3;
+}
+
+message TaildropOutgoingFile {
+  string name = 1;
+  int64 size = 2;
+}
+
+message TaildropFileChunk {
+  bytes data = 1;
+}
+
+message TaildropFileDone {}
+
+message TaildropSendServerMessage {
+  oneof message {
+    TaildropSendProgress progress = 1;
+    int64 receivedBytes = 2;
+  }
+}
+
+message TaildropSendProgress {
+  int32 fileIndex = 1;
+  int64 sentBytes = 2;
+  bool fileCompleted = 3;
+}
+
+message DownloadTaildropFileRequest {
+  string endpointTag = 1;
+  string name = 2;
+}
+
+message DownloadTaildropFileChunk {
+  int64 size = 1;
+  bytes data = 2;
+}
+
+message DeleteTaildropFileRequest {
+  string endpointTag = 1;
+  string name = 2;
+}
+
+message CancelTaildropReceivingRequest {
+  string endpointTag = 1;
+  string senderID = 2;
+  string name = 3;
+}
+
+message USBProviderMessage {
+  oneof message {
+    USBDeviceAttach attach = 1;
+    USBDeviceDetach detach = 2;
+    USBURBResponse urbResponse = 3;
+  }
+}
+
+message USBServerMessage {
+  oneof message {
+    USBDeviceReady ready = 1;
+    USBURBRequest urbRequest = 2;
+    USBEndpointAbort abort = 3;
+    USBError error = 4;
+  }
+}
+
+message USBDeviceDescriptor {
+  string deviceId = 1;
+  uint32 busNum = 2;
+  uint32 devNum = 3;
+  uint32 speed = 4;
+  uint32 vendorId = 5;
+  uint32 productId = 6;
+  uint32 bcdDevice = 7;
+  uint32 deviceClass = 8;
+  uint32 deviceSubClass = 9;
+  uint32 deviceProtocol = 10;
+  uint32 configurationValue = 11;
+  uint32 numConfigurations = 12;
+  repeated USBInterface interfaces = 13;
+  string serial = 14;
+  string product = 15;
+}
+
+message USBDeviceAttach {
+  string serverTag = 1;
+  USBDeviceDescriptor descriptor = 2;
+}
+
+message USBInterface {
+  uint32 interfaceClass = 1;
+  uint32 interfaceSubClass = 2;
+  uint32 interfaceProtocol = 3;
+}
+
+message USBDeviceDetach {
+  string deviceId = 1;
+}
+
+message USBDeviceReady {
+  string deviceId = 1;
+  string busId = 2;
+}
+
+message USBURBRequest {
+  string deviceId = 1;
+  uint64 seq = 2;
+  uint32 endpoint = 3;
+  bool directionIn = 4;
+  uint32 transferFlags = 5;
+  bytes setup = 6;
+  uint32 transferBufferLength = 7;
+  bytes outData = 8;
+  int32 numberOfPackets = 9;
+  int32 startFrame = 10;
+  int32 interval = 11;
+  repeated USBIsoPacket isoPackets = 12;
+}
+
+message USBURBResponse {
+  string deviceId = 1;
+  uint64 seq = 2;
+  int32 status = 3;
+  int32 actualLength = 4;
+  bytes inData = 5;
+  repeated USBIsoPacket isoPackets = 6;
+}
+
+message USBIsoPacket {
+  int32 offset = 1;
+  int32 length = 2;
+  int32 actualLength = 3;
+  int32 status = 4;
+}
+
+message USBEndpointAbort {
+  string deviceId = 1;
+  uint32 endpoint = 2;
+}
+
+message USBError {
+  string deviceId = 1;
+  string message = 2;
+}
+
+message USBIPServerStatusUpdate {
+  repeated USBIPServerStatus servers = 1;
+}
+
+message USBIPServerStatus {
+  string serverTag = 1;
+  repeated USBSharedDevice devices = 2;
+}
+
+message USBSharedDevice {
+  USBDeviceDescriptor descriptor = 1;
+  string busId = 2;
+  string stableId = 3;
+  USBBackend backend = 4;
+  USBDeviceState state = 5;
+}
+
+enum USBDeviceState {
+  USB_DEVICE_STATE_IDLE = 0;
+  USB_DEVICE_STATE_ATTACHED = 1;
+  USB_DEVICE_STATE_UNAVAILABLE = 2;
+}
+
+enum USBBackend {
+  USB_BACKEND_UNSPECIFIED = 0;
+  USB_BACKEND_LINUX_SYSFS = 1;
+  USB_BACKEND_DYNAMIC = 2;
+  USB_BACKEND_DARWIN_IOKIT = 3;
+  USB_BACKEND_WINDOWS_VBOXUSB = 4;
+}
+
+message OpenConnectStatusUpdate {
+  repeated OpenConnectEndpointStatus endpoints = 1;
+}
+
+message OpenConnectEndpointStatus {
+  string endpointTag = 1;
+  string state = 2;
+  string stateText = 3;
+  OpenConnectAuthChallenge authChallenge = 4;
+  string error = 5;
+  OpenConnectTunnelInfo tunnelInfo = 6;
+}
+
+message OpenConnectTunnelInfo {
+  string server = 1;
+  string flavor = 2;
+  string transport = 3;
+  repeated string ipv4 = 4;
+  repeated string ipv6 = 5;
+  repeated string dns = 6;
+  uint32 mtu = 7;
+  int64 connectedSince = 8;
+}
+
+message OpenConnectAuthChallenge {
+  string id = 1;
+  string banner = 2;
+  string message = 3;
+  string error = 4;
+  oneof challenge {
+    OpenConnectAuthForm form = 5;
+    OpenConnectBrowserRequest browser = 6;
+  }
+}
+
+message OpenConnectAuthForm {
+  repeated OpenConnectAuthFormField fields = 1;
+}
+
+message OpenConnectAuthFormField {
+  string submissionKey = 1;
+  string name = 2;
+  string label = 3;
+  string kind = 4;
+  string value = 5;
+  repeated OpenConnectAuthFormChoice options = 6;
+}
+
+message OpenConnectAuthFormChoice {
+  string value = 1;
+  string label = 2;
+}
+
+message OpenConnectBrowserRequest {
+  string url = 1;
+  string finalURL = 2;
+  repeated string cookieNames = 3;
+  repeated string headerNames = 4;
+  repeated string callbackURLPrefixes = 5;
+  repeated string earlyCookieNames = 6;
+  string cacheID = 7;
+}
+
+message OpenConnectBrowserCookie {
+  string name = 1;
+  string value = 2;
+}
+
+message OpenConnectBrowserHeader {
+  string name = 1;
+  repeated string values = 2;
+}
+
+message OpenConnectAuthFormResponse {
+  map<string, string> values = 1;
+}
+
+message OpenConnectBrowserResult {
+  string finalURL = 1;
+  repeated OpenConnectBrowserCookie cookies = 2;
+  repeated OpenConnectBrowserHeader headers = 3;
+}
+
+message OpenConnectAuthResponseSubmission {
+  string endpointTag = 1;
+  string challengeID = 2;
+  oneof response {
+    OpenConnectAuthFormResponse form = 3;
+    OpenConnectBrowserResult browser = 4;
+  }
+}
+
+message OpenConnectAuthChallengeCancel {
+  string endpointTag = 1;
+  string challengeID = 2;
+}
+
+message OpenVPNStatusUpdate {
+  repeated OpenVPNEndpointStatus endpoints = 1;
+}
+
+message OpenVPNEndpointStatus {
+  string endpointTag = 1;
+  string state = 2;
+  string stateText = 3;
+  OpenVPNChallenge challenge = 4;
+  string error = 5;
+  OpenVPNTunnelInfo tunnelInfo = 6;
+}
+
+message OpenVPNTunnelInfo {
+  string server = 1;
+  reserved 2;
+  string network = 3;
+  repeated string ipv4 = 4;
+  repeated string ipv6 = 5;
+  repeated string dns = 6;
+  uint32 mtu = 7;
+  int64 connectedSince = 8;
+  string cipher = 9;
+}
+
+message OpenVPNChallenge {
+  string id = 1;
+  string kind = 2;
+  string username = 3;
+  string message = 4;
+  string url = 5;
+  string secretMessage = 6;
+  bool echo = 7;
+  string previousError = 8;
+  int64 deadline = 9;
+}
+
+message OpenVPNChallengeSubmission {
+  string endpointTag = 1;
+  string challengeID = 2;
+  string username = 3;
+  string password = 4;
+  string secret = 5;
+}
+
+message OpenVPNChallengeCancel {
+  string endpointTag = 1;
+  string challengeID = 2;
+}
+
+message NotificationEvent {
+  oneof event {
+    Notification send = 1;
+    NotificationCancel cancel = 2;
+  }
+}
+
+message Notification {
+  string identifier = 1;
+  string typeName = 2;
+  int32 typeID = 3;
+  string title = 4;
+  string subtitle = 5;
+  string body = 6;
+  string openURL = 7;
+}
+
+message NotificationCancel {
+  string identifier = 1;
+  int32 typeID = 2;
+}
+
+// lx:begin lx_command
+
+message URLTestOutboundRequest {
+  string outboundTag = 1;
+  string link = 2;
+  uint32 timeout = 3;
+}
+message URLTestOutboundResponse {
+  uint32 delay = 1;
+  string error = 2;
+}
+
+// SPEC 058 — diagnostic HTTP probe through a single node. Unlike URLTestOutbound
+// (which reports only a delay) this returns the response body, so the client can
+// answer "which exit IP / geo / warp state does THIS node give me".
+message HttpHeaderPair {
+  string key = 1;
+  string value = 2;
+}
+message GetURLViaOutboundRequest {
+  string outboundTag = 1;
+  string link = 2;
+  uint32 timeout = 3;
+  uint32 maxBytes = 4;
+  repeated HttpHeaderPair headers = 5;
+}
+message GetURLViaOutboundResponse {
+  uint32 httpStatus = 1;
+  bytes body = 2; // bytes, not string: an arbitrary endpoint is not guaranteed valid UTF-8
+  bool truncated = 3;
+  string contentType = 4;
+  string remoteAddr = 5;
+  uint32 elapsedMs = 6;
+  string error = 7;
+}
+
+message Rule {
+  string type = 1;
+  string payload = 2;
+  string action = 3;
+  bool isDNS = 4;
+}
+message RuleList {
+  repeated Rule rules = 1;
+}
+
+// SPEC 018 — one structured DNS resolution. source is the resolver verb
+// (exchanged/cached/optimistic/refreshed/failed); processInfo carries app attribution
+// (package/uid) the text log lacks. Reuses the existing ProcessInfo message.
+// failed+error cover timeout/SERVFAIL/rejected (пункт 1); rcode is -1 when there was no
+// response. answers is the full response.Answer (CNAME hops + A/AAAA) in wire order, only
+// populated when the subscriber set includeAnswers (пункт 2).
+message SubscribeDNSQueriesRequest {
+  bool includeAnswers = 1;
+}
+message DnsQueryEvent {
+  string domain = 1;
+  uint32 queryType = 2;
+  int32 rcode = 3;
+  uint32 ttl = 4;
+  string source = 5;
+  ProcessInfo processInfo = 6;
+  bool failed = 7;
+  string error = 8;
+  repeated DnsAnswer answers = 9;
+  // SPEC 018 — which DNS server (transport) resolved this, and the outbound channel that
+  // server is bound to. A selector tag is resolved to the live node via Now() server-side.
+  // outbound is empty on cached/optimistic paths (the query never left the device).
+  string dnsServer = 10;
+  string dnsServerType = 11;
+  repeated string outbound = 12;
+  // SPEC 035 — group probe trace. dnsGroupPath is the group nesting INSIDE-OUT
+  // (empty = the query did not go through a group); attempts is the probe
+  // chronology snapshotted at answer time (fan stragglers that resolved later
+  // are absent by design — the full picture is GetDNSGroups); fanned marks a
+  // query that involved a fan-out (rescue / election / parallel); survival
+  // marks an answer obtained via the least dirty server when no member was
+  // clean (degradation would otherwise be invisible in the stream).
+  repeated string dnsGroupPath = 13;
+  repeated DnsGroupAttempt attempts = 14;
+  bool fanned = 15;
+  bool survival = 16;
+}
+// One resolved member probe of a DNS group (SPEC 035). outcome vocabulary:
+// answered | timeout | network_error | servfail ("answered" includes NXDOMAIN
+// and empty answers — they are valid responses, not failures).
+message DnsGroupAttempt {
+  string server = 1;
+  string serverType = 2;
+  string outcome = 3;
+  uint32 rttMs = 4;
+}
+message DnsAnswer {
+  string name = 1;
+  uint32 type = 2;
+  string rdata = 3;
+  uint32 ttl = 4;
+}
+
+// SPEC 019 v2 — the round_robin rotation pool of a urltest group. One PoolSlot per fixed
+// slot. delay is the node's last test result in ms; 0 means dead/not-measured (a live node
+// is clamped to >= 1 server-side). A non-round_robin group (selector/least_test) returns an
+// empty slots list — "this group has no pool", not an error.
+message GetPoolRequest {
+  string groupTag = 1;
+}
+message PoolSlot {
+  uint32 slot = 1;
+  string tag = 2;
+  uint32 delay = 3;
+}
+message PoolList {
+  repeated PoolSlot slots = 1;
+}
+
+// SPEC 035 v3 — point-in-time record snapshot of every DNS group in the
+// config (groups are few; the UI draws them all, so there is no per-tag
+// request). clean = zero live errors; lastErrorAgeMs: age of the newest live
+// error, -1 = none; liveWins: live win records (fastest mode);
+// current = the group's sticky target; lastRttMs: last successful probe,
+// 0 = never measured. The UI derives "when does it clear" from the ages and
+// the error_ttl/win_ttl it knows from the config.
+message DnsGroupMember {
+  string tag = 1;
+  string serverType = 2;
+  bool clean = 3;
+  uint32 liveErrors = 4;
+  int64 lastErrorAgeMs = 5;
+  uint32 liveWins = 6;
+  bool current = 7;
+  uint32 lastRttMs = 8;
+}
+message DnsGroupState {
+  string tag = 1;
+  string mode = 2;
+  string current = 3;
+  repeated DnsGroupMember members = 6;
+}
+message DnsGroupList {
+  repeated DnsGroupState groups = 1;
+}
+
+// SPEC 037 — the canonical serialization of the options the running box was actually
+// built from: post-override (tun AutoRedirect/packages, injected OOM-killer service),
+// re-marshaled from the parsed struct. NOT byte-identical to the profile text the client
+// sent (field order, omitempty, [] -> null normalization) — compare semantically, not
+// textually. Serialized once at service start; this is a cheap string handoff.
+message RunningConfig {
+  string content = 1;
+}
+
+// SPEC 073 — state of every `chain` outbound: per position the resolved node
+// (`now`; `transparent` = direct at position >= 1 collapses the hop) and, for
+// positions >= 1, the live link instance ("clone") of that node: state
+// starting|active|idle, live connections, ages, effective MTU and why,
+// what `strip` removed and whether `rewrite` applied, last dial error.
+message ChainCloneState {
+  string state = 1;
+  int64 activeConns = 2;
+  int64 lastPickedAgeMs = 3;
+  int64 createdAgeMs = 4;
+  uint32 mtuConfigured = 5;
+  uint32 mtuEffective = 6;
+  string mtuReason = 7;
+  repeated string stripped = 8;
+  bool rewritten = 9;
+  string lastError = 10;
+}
+message ChainPosition {
+  string tag = 1;
+  bool isGroup = 2;
+  string now = 3;
+  bool transparent = 4;
+  int64 errors = 5;
+  ChainCloneState clone = 6;
+  // SPEC 075 — runtime toggle: the position is excluded from the path (`now`
+  // stays filled so diagnostics can show WHAT is disabled; clone is nil).
+  bool disabled = 7;
+}
+message ChainState {
+  string tag = 1;
+  repeated ChainPosition positions = 2;
+  int64 dials = 3;
+  int64 errors = 4;
+  int64 clonesCreated = 5;
+  int64 clonesEvicted = 6;
+  int64 liveClones = 7;
+}
+message ChainList {
+  repeated ChainState chains = 1;
+}
+
+// SPEC 075 — runtime enable/disable of one chain position (packet order,
+// 0 = entry). Any combination is valid: all positions disabled degenerates the
+// chain into direct. The flag always applies; a failed link warm-up on enable
+// is DATA (warmupError), not a status error — status errors are reserved for
+// genuine call failures (unknown chain, index out of range, service stopped).
+message SetChainPositionEnabledRequest {
+  string chainTag = 1;
+  int32 position = 2;
+  bool enabled = 3;
+}
+message SetChainPositionEnabledResponse {
+  string warmupError = 1; // "" = ok, or warm-up not applicable (urltest/direct/disable)
+}
+// SPEC 075 — effective post-transform options JSON ({type, tag, ...} after
+// strip/rewrite/MTU/detour) of the live link at the position's currently
+// resolved leaf. Snapshotted at clone creation (RunningConfig model, SPEC 037).
+// NotFound when no live link exists (position 0, transparent, evicted, disabled).
+message GetChainCloneConfigRequest {
+  string chainTag = 1;
+  int32 position = 2;
+}
+
+// SPEC 106 — manual on/off switch of a WG/AWG endpoint. Disable brings the
+// device down (established flows are cut) and refuses every dial; enable wakes
+// a suspended device, a torn-down or never-built one is built by the next
+// dial. Not persisted: a reload starts every endpoint enabled.
+message SetEndpointEnabledRequest {
+  string tag = 1;
+  bool enabled = 2;
+}
+message SetEndpointEnabledResponse {
+  string state = 1; // GroupItem.endpointState after the call
+}
+
+// One WireGuard peer of a WG/AWG endpoint. Raw facts, no "connected" verdict:
+// the consumer derives liveness from lastHandshakeUnix. lx: SPEC 114.
+message PeerStatus {
+  // Base64, as public_key in the config — the peer identity.
+  string publicKey = 1;
+  // Current remote ip:port: configured, or learned from the peer's packets
+  // (server side, roaming). Last known address; empty until known.
+  string endpoint = 2;
+  // Unix seconds of the last completed handshake; 0 = none yet.
+  int64 lastHandshakeUnix = 3;
+  int64 rxBytes = 4;
+  int64 txBytes = 5;
+}
+
+// SPEC 114 — status snapshot of one WG/AWG endpoint: device state and peers in
+// one answer, so an empty peer list is explained by endpointState without a
+// second call. Never builds or wakes a device.
+message WireGuardStatusRequest {
+  string tag = 1; // endpoint tag, as in the config
+}
+message WireGuardEndpointStatus {
+  string endpointTag = 1;
+  // never_built / building / up / asleep / torn_down / down / disabled — the
+  // same value as GroupItem.endpointState.
+  string endpointState = 2;
+  // Seconds since the last dial through the endpoint; 0 while active.
+  int64 idleSinceSeconds = 3;
+  // Config order; empty while there is no device (see endpointState).
+  repeated PeerStatus peers = 4;
+}
+
+// SPEC 115 — the same TailscaleEndpointStatus SubscribeTailscaleStatus streams,
+// read on demand with a fresh backend snapshot (peer paths, handshakes, health).
+message TailscaleStatusRequest {
+  string endpointTag = 1;
+}
+
+// SPEC 115 — which path magicsock would use for a peer right now.
+enum TailscalePeerPath {
+  TAILSCALE_PEER_PATH_NONE = 0;       // never sent to the peer; no path chosen
+  TAILSCALE_PEER_PATH_DIRECT = 1;     // direct UDP, see TailscalePeer.endpoint
+  TAILSCALE_PEER_PATH_PEER_RELAY = 2; // via a peer relay, see TailscalePeer.peerRelay
+  TAILSCALE_PEER_PATH_DERP = 3;       // via DERP, see TailscalePeer.derpRegionCode
+}
+
+// lx:end lx_command
