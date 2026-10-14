@@ -1,5 +1,11 @@
 # Проверки публичного кандидата
 
+## Публикация исходников · 14.10.2026
+
+Исходный снимок `ac4f10ec2363c6af02155017e9e3069b80de63e1` опубликован в [myvpn-mobile](https://github.com/fakalec27/myvpn-mobile). Первый удалённый запуск проверок — [GitHub Actions](https://github.com/fakalec27/myvpn-mobile/actions/runs/38625997225). Его фактический результат доступен по ссылке; локальные результаты ниже относятся к предпубликационной приёмке и не выданы за результат этого запуска. Готовые APK и бинарный релиз не публиковались.
+
+## Локальная приёмка до публикации
+
 Дата: 14 октября 2026. Локальная копия, Windows, PowerShell 7. Ни телефоны, ни эмуляторы, ни реальные подписки, ни VPS не использовались.
 
 Подтверждено:
@@ -17,6 +23,6 @@ Go vet выбранных четырёх пакетов — PASS; daemon package
 
 Негативная ветка ordinary-client подтверждена compiled bytecode: getBinder() возвращает null и не вызывает hidden/system-service API; callers моделируют unavailable. Privileged provider disabled/nonexported; settings row disabled, прямые privilege routes показывают объяснение. Это offline proof границы, а не выполненная физическая проверка Android UI.
 
-Физические проверки исходной версии не являются проверками публичного APK. В этой задаче runtime QA не проводилась. Android legacy flavor, store публикация, Linux/macOS build и x86_64 публичная сборка ещё не подтверждены. SPDX SBOM содержит source dependency graph с NOASSERTION для нерассмотренных лицензий; полный binary SBOM/лицензионный аудит требуется перед release. CI подготовлен, GitHub CI ещё не запускался. Независимый clone-tree build подтверждён следующим абзацем.
+Физические проверки исходной версии не являются проверками публичного APK. В этой задаче runtime QA не проводилась. Android legacy flavor, store публикация, Linux/macOS build и x86_64 публичная сборка ещё не подтверждены. SPDX SBOM содержит source dependency graph с NOASSERTION для нерассмотренных лицензий; полный binary SBOM/лицензионный аудит требуется перед release. На этом этапе CI был подготовлен, GitHub CI ещё не запускался. Независимый clone-tree build подтверждён следующим абзацем.
 
 На snapshot 7e216651 выполнен полный fresh-clone native/debug/JVM/lint прогон: 182 tests, 0 failures/errors/skips; lint 0 errors, 286 warnings, 6 hints. Native ARM AAR SHA повторно совпал. Затем добавлены полные pinned источники четырёх nested replacements backport module; основной core/client код не менялся. В новом самостоятельном клоне module graph основного ядра и backport module разрешается с -mod=readonly. Pins, вложенные replacements, лицензии и tracked manifest проверены отдельно; эта проверка не подменяется прежним native build proof.
