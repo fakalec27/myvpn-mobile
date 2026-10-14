@@ -77,6 +77,7 @@ import androidx.compose.ui.input.key.onPreviewKeyEvent
 import androidx.compose.ui.input.key.type
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
@@ -107,6 +108,7 @@ fun EditProfileContentScreen(
         )
     val uiState by viewModel.uiState.collectAsState()
     val context = LocalContext.current
+    val resources = LocalResources.current
     var showUnsavedChangesDialog by remember { mutableStateOf(false) }
     val searchFocusRequester = remember { FocusRequester() }
     val focusManager = LocalFocusManager.current
@@ -132,7 +134,7 @@ fun EditProfileContentScreen(
         if (uiState.showSaveSuccessMessage) {
             Toast.makeText(
                 context,
-                context.getString(R.string.success_configuration_saved),
+                resources.getString(R.string.success_configuration_saved),
                 Toast.LENGTH_SHORT,
             ).show()
             viewModel.clearSaveSuccessMessage()

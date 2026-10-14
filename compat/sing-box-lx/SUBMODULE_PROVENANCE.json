@@ -1,0 +1,50 @@
+{
+  "modules": {
+    "gvisor": {
+      "revision": "117243aa02fa2915cb53d1d4549bfca3a3ebf238",
+      "url": "https://github.com/Leadaxe/gvisor-lx",
+      "licenseFiles": [
+        "LICENSE"
+      ],
+      "files": 728
+    },
+    "sing-tun": {
+      "revision": "f236400f3d29bc434f568db93602ef031f0b34cd",
+      "url": "https://github.com/Leadaxe/sing-tun-lx",
+      "licenseFiles": [
+        "LICENSE"
+      ],
+      "files": 180
+    },
+    "utls": {
+      "revision": "ad69b191e2f83367ec0ac5f3a1a61310732c43b9",
+      "url": "https://github.com/Leadaxe/utls-lx",
+      "licenseFiles": [
+        "LICENSE",
+        "dicttls/LICENSE"
+      ],
+      "files": 357
+    },
+    "wireguard-go": {
+      "revision": "8a53421edf7edd2f60dbeab3bd6e49256eab4d04",
+      "url": "https://github.com/Leadaxe/wireguard-go-awg2-lx",
+      "licenseFiles": [
+        "LICENSE"
+      ],
+      "files": 111
+    }
+  },
+  "notes": "Sources exported from exact pinned Git objects without Git metadata; two documented README link corrections do not change executable sources.",
+  "publicDocumentationEdits": {
+    "compat/sing-box-lx/submodules/utls/README.md": {
+      "pinnedSHA256": "a14fd123af5902cbde420aad328305169fd28a183bcb99085b3c2abc6e714921",
+      "publicSHA256": "47c3332945a5b417e3002f8494eb8c748cae6b194931f7d54946ed040207242c",
+      "reason": "Repair inherited documentation link; executable source unchanged"
+    },
+    "compat/sing-box-lx/submodules/utls/dicttls/README.md": {
+      "pinnedSHA256": "5c02a37c30760d4af6f6c8c0c0b95e8f1cec3b525dbd900faa60a51ebbe4b582",
+      "publicSHA256": "8c05bdfa28bd8195ad800cbf183302859bc8648980fccf60a2d0f39e18fa7867",
+      "reason": "Repair inherited documentation link; executable source unchanged"
+    }
+  }
+}

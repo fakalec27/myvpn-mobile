@@ -57,6 +57,7 @@ import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -105,6 +106,7 @@ fun ProfilesCard(
     onOpenNewProfile: (NewProfileArgs) -> Unit,
 ) {
     val context = LocalContext.current
+    val resources = LocalResources.current
     val coroutineScope = rememberCoroutineScope()
 
     val importHandler = remember { ProfileImportHandler(context) }
@@ -162,7 +164,7 @@ fun ProfilesCard(
                         withContext(Dispatchers.Main) {
                             Toast.makeText(
                                 context,
-                                context.getString(R.string.success_profile_saved),
+                                resources.getString(R.string.success_profile_saved),
                                 Toast.LENGTH_SHORT,
                             ).show()
                         }
@@ -170,7 +172,7 @@ fun ProfilesCard(
                         withContext(Dispatchers.Main) {
                             Toast.makeText(
                                 context,
-                                context.getString(R.string.failed_save_profile, e.message),
+                                resources.getString(R.string.failed_save_profile, e.message),
                                 Toast.LENGTH_SHORT,
                             ).show()
                         }
@@ -195,7 +197,7 @@ fun ProfilesCard(
                         withContext(Dispatchers.Main) {
                             Toast.makeText(
                                 context,
-                                context.getString(R.string.success_profile_saved),
+                                resources.getString(R.string.success_profile_saved),
                                 Toast.LENGTH_SHORT,
                             ).show()
                         }
@@ -203,7 +205,7 @@ fun ProfilesCard(
                         withContext(Dispatchers.Main) {
                             Toast.makeText(
                                 context,
-                                context.getString(R.string.failed_save_profile, e.message),
+                                resources.getString(R.string.failed_save_profile, e.message),
                                 Toast.LENGTH_SHORT,
                             ).show()
                         }
@@ -647,6 +649,7 @@ private fun ProfileInfoRow(profile: Profile?) {
     if (profile == null) return
 
     val context = LocalContext.current
+    val resources = LocalResources.current
 
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp),

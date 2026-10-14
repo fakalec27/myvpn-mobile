@@ -83,6 +83,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
@@ -129,6 +130,7 @@ fun LogScreen(
     val resolvedViewModel = viewModel ?: viewModel<LogViewModel>()
     val uiState by resolvedViewModel.uiState.collectAsState()
     val context = LocalContext.current
+    val resources = LocalResources.current
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val isTablet = windowSizeClass.isWidthAtLeastBreakpointCompat(WindowSizeClassCompat.WIDTH_DP_MEDIUM_LOWER_BOUND)
     val listState = rememberLazyListState()
@@ -336,7 +338,7 @@ fun LogScreen(
                                         Application.clipboard.setPrimaryClip(clip)
                                         Toast.makeText(
                                             context,
-                                            context.getString(R.string.copied_to_clipboard),
+                                            resources.getString(R.string.copied_to_clipboard),
                                             Toast.LENGTH_SHORT,
                                         ).show()
                                         resolvedViewModel.clearSelection()
@@ -578,7 +580,7 @@ fun LogScreen(
                                     }
                                     Toast.makeText(
                                         context,
-                                        context.getString(R.string.success_logs_saved),
+                                        resources.getString(R.string.success_logs_saved),
                                         Toast.LENGTH_SHORT,
                                     ).show()
                                 } catch (exception: CancellationException) {
@@ -586,7 +588,7 @@ fun LogScreen(
                                 } catch (exception: Exception) {
                                     Toast.makeText(
                                         context,
-                                        context.getString(R.string.failed_save_logs, exception.message),
+                                        resources.getString(R.string.failed_save_logs, exception.message),
                                         Toast.LENGTH_SHORT,
                                     ).show()
                                 }
@@ -718,13 +720,13 @@ fun LogScreen(
                                 Application.clipboard.setPrimaryClip(clip)
                                 Toast.makeText(
                                     context,
-                                    context.getString(R.string.logs_copied_to_clipboard),
+                                    resources.getString(R.string.logs_copied_to_clipboard),
                                     Toast.LENGTH_SHORT,
                                 ).show()
                             } else {
                                 Toast.makeText(
                                     context,
-                                    context.getString(R.string.no_logs_to_copy),
+                                    resources.getString(R.string.no_logs_to_copy),
                                     Toast.LENGTH_SHORT,
                                 ).show()
                             }
@@ -789,14 +791,14 @@ fun LogScreen(
                                             addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                                         }
                                         context.startActivity(
-                                            Intent.createChooser(shareIntent, context.getString(R.string.intent_share_logs)),
+                                            Intent.createChooser(shareIntent, resources.getString(R.string.intent_share_logs)),
                                         )
                                     } catch (exception: CancellationException) {
                                         throw exception
                                     } catch (exception: Exception) {
                                         Toast.makeText(
                                             context,
-                                            context.getString(R.string.failed_share_logs, exception.message),
+                                            resources.getString(R.string.failed_share_logs, exception.message),
                                             Toast.LENGTH_SHORT,
                                         ).show()
                                     }
@@ -804,7 +806,7 @@ fun LogScreen(
                             } else {
                                 Toast.makeText(
                                     context,
-                                    context.getString(R.string.no_logs_to_share),
+                                    resources.getString(R.string.no_logs_to_share),
                                     Toast.LENGTH_SHORT,
                                 ).show()
                             }

@@ -54,6 +54,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -87,6 +88,7 @@ fun ProfilePickerSheet(
 ) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     val context = LocalContext.current
+    val resources = LocalResources.current
     val coroutineScope = rememberCoroutineScope()
 
     var showQRCodeDialog by remember { mutableStateOf(false) }
@@ -220,6 +222,7 @@ private fun ProfilePickerRow(
     var showMenu by remember { mutableStateOf(false) }
     var expandedShareSubmenu by remember { mutableStateOf(false) }
     val context = LocalContext.current
+    val resources = LocalResources.current
     val coroutineScope = rememberCoroutineScope()
 
     val animatedElevation by animateFloatAsState(
@@ -245,7 +248,7 @@ private fun ProfilePickerRow(
                     withContext(Dispatchers.Main) {
                         Toast.makeText(
                             context,
-                            context.getString(R.string.success_profile_saved),
+                            resources.getString(R.string.success_profile_saved),
                             Toast.LENGTH_SHORT,
                         ).show()
                     }
@@ -253,7 +256,7 @@ private fun ProfilePickerRow(
                     withContext(Dispatchers.Main) {
                         Toast.makeText(
                             context,
-                            context.getString(R.string.failed_save_profile, e.message),
+                            resources.getString(R.string.failed_save_profile, e.message),
                             Toast.LENGTH_SHORT,
                         ).show()
                     }

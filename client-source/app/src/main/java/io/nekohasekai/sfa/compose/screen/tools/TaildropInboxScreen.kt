@@ -51,6 +51,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -79,6 +80,7 @@ fun TaildropInboxScreen(
     val sendSessions by TaildropSendManager.sessions.collectAsState()
     val sending = sendSessions.filter { it.endpointTag == endpointTag }
     val context = LocalContext.current
+    val resources = LocalResources.current
     val scope = rememberCoroutineScope()
 
     val failedSession = sending.firstOrNull { it.errorMessage != null }
@@ -188,7 +190,7 @@ fun TaildropInboxScreen(
                                 .setType(mimeType)
                                 .setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                                 .putExtra(Intent.EXTRA_STREAM, uri),
-                            context.getString(AppCompatR.string.abc_shareactionprovider_share_with),
+                            resources.getString(AppCompatR.string.abc_shareactionprovider_share_with),
                         ),
                     )
                 } else {

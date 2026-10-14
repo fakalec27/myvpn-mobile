@@ -83,6 +83,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -142,6 +143,7 @@ fun AppSettingsScreen(
     }
 
     val context = LocalContext.current
+    val resources = LocalResources.current
     val scope = rememberCoroutineScope()
     val hasUpdate by UpdateState.hasUpdate
     val updateInfo by UpdateState.updateInfo
@@ -227,9 +229,9 @@ fun AppSettingsScreen(
                     null
                 } else {
                     when (silentInstallMethod) {
-                        "PACKAGE_INSTALLER" -> context.getString(R.string.package_installer_not_available)
-                        "SHIZUKU" -> context.getString(R.string.shizuku_not_available)
-                        else -> context.getString(R.string.silent_install_verify_failed, silentInstallMethod)
+                        "PACKAGE_INSTALLER" -> resources.getString(R.string.package_installer_not_available)
+                        "SHIZUKU" -> resources.getString(R.string.shizuku_not_available)
+                        else -> resources.getString(R.string.silent_install_verify_failed, silentInstallMethod)
                     }
                 }
             }
@@ -361,9 +363,9 @@ fun AppSettingsScreen(
                         null
                     } else {
                         when (method) {
-                            "PACKAGE_INSTALLER" -> context.getString(R.string.package_installer_not_available)
-                            "SHIZUKU" -> context.getString(R.string.shizuku_not_available)
-                            else -> context.getString(R.string.silent_install_verify_failed, method)
+                            "PACKAGE_INSTALLER" -> resources.getString(R.string.package_installer_not_available)
+                            "SHIZUKU" -> resources.getString(R.string.shizuku_not_available)
+                            else -> resources.getString(R.string.silent_install_verify_failed, method)
                         }
                     }
                 }

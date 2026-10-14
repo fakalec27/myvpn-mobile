@@ -138,18 +138,7 @@ object VpnDetectionTest {
 
     private fun readProxyFromLinkProperties(lp: LinkProperties?): android.net.ProxyInfo? {
         if (lp == null) return null
-        return try {
-            val method = lp.javaClass.getMethod("getHttpProxy")
-            method.invoke(lp) as? android.net.ProxyInfo
-        } catch (_: Throwable) {
-            try {
-                val field = lp.javaClass.getDeclaredField("mHttpProxy")
-                field.isAccessible = true
-                field.get(lp) as? android.net.ProxyInfo
-            } catch (_: Throwable) {
-                null
-            }
-        }
+        return runCatching { lp.httpProxy }.getOrNull()
     }
 
     private fun formatProxyInfo(proxyInfo: android.net.ProxyInfo?): String? {

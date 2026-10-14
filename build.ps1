@@ -6,6 +6,7 @@ param(
 $ErrorActionPreference='Stop'
 if (!$env:ANDROID_HOME -or !$env:JAVA_HOME) { throw 'Set ANDROID_HOME and JAVA_HOME (JDK 17).' }
 $env:GOTOOLCHAIN='go1.26.8'
+if (!$env:GOMODCACHE) { $env:GOMODCACHE=Join-Path ([Environment]::GetFolderPath('UserProfile')) 'go/pkg/mod' }
 $env:MYVPN_ABI=if ($Architecture -eq 'arm64') { 'arm64-v8a' } else { 'x86_64' }
 $env:GOPATH=Join-Path $PSScriptRoot '.build/go'
 $env:GOBIN=Join-Path $env:GOPATH 'bin'

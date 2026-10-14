@@ -1,5 +1,7 @@
 package io.nekohasekai.sfa.utils
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -55,7 +57,14 @@ object HookModuleUpdateNotifier {
                 .setAutoCancel(true)
                 .setCategory(NotificationCompat.CATEGORY_STATUS)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
-        NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, builder.build())
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+            context.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+        ) return
+        try {
+            NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, builder.build())
+        } catch (_: SecurityException) {
+            // Permission can be revoked between the check and notification delivery.
+        }
     }
 
     private fun cancel(context: Context) {

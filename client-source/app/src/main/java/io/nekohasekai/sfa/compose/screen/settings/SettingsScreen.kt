@@ -230,6 +230,7 @@ fun SettingsScreen(navController: NavController) {
                             style = MaterialTheme.typography.bodyLarge,
                         )
                     },
+                    supportingContent = { Text(stringResource(R.string.public_privileged_unavailable)) },
                     leadingContent = {
                         Icon(
                             imageVector = Icons.Outlined.AdminPanelSettings,
@@ -247,7 +248,7 @@ fun SettingsScreen(navController: NavController) {
                     modifier =
                     Modifier
                         .clip(RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp))
-                        .clickable { navController.navigate("settings/privilege") },
+                        .clickable(enabled = io.nekohasekai.sfa.myvpn.PublicCapabilities.privilegedIntegration) { navController.navigate("settings/privilege") },
                     colors =
                     ListItemDefaults.colors(
                         containerColor = Color.Transparent,

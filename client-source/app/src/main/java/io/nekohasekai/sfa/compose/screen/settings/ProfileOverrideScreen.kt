@@ -49,6 +49,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -90,6 +91,7 @@ fun ProfileOverrideScreen(
     }
 
     val context = LocalContext.current
+    val resources = LocalResources.current
     val scope = rememberCoroutineScope()
 
     var autoRedirect by remember { mutableStateOf(Settings.autoRedirect) }
@@ -249,7 +251,7 @@ fun ProfileOverrideScreen(
                                     } else {
                                         Toast.makeText(
                                             context,
-                                            context.getString(R.string.root_access_required),
+                                            resources.getString(R.string.root_access_required),
                                             Toast.LENGTH_LONG,
                                         ).show()
                                     }

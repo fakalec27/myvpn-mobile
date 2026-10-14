@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="local_network_permission_title">مجوز شبکهٔ محلی</string>
+    <string name="local_network_permission_description">اندروید ۱۷ و نسخه‌های جدیدتر برای دسترسی به شبکهٔ Wi-Fi یا اترنت به مجوز شبکهٔ محلی نیاز دارند. اندروید این مجوز را در گروه دستگاه‌های نزدیک درخواست می‌کند.</string>
+    <string name="tailscale_ssh_close_session">بستن نشست</string>
+    <string name="terminal_notification_channel">اعلان‌های پایانه</string>
+    <string name="usbip_no_server">سرور USB/IP پیدا نشد</string>
+    <string name="usbip_no_devices">برای اشتراک‌گذاری از طریق این سرور USB/IP، یک دستگاه USB انتخاب کنید.</string>
+    <string name="usbip_no_usb_devices">هیچ دستگاه USB متصل نیست</string>
+    <string name="usbip_connect_device">اتصال دستگاه USB</string>
+    <string name="usbip_detach">جدا کردن</string>
+    <string name="usbip_state_attaching">در حال اتصال…</string>
+    <string name="usbip_state_ready">آماده</string>
+    <string name="usbip_state_error">خطا</string>
+    <string name="usbip_state_idle">بیکار</string>
+    <string name="usbip_state_attached">متصل</string>
+    <string name="usbip_state_unavailable">در دسترس نیست</string>
+    <string name="usbip_identity">شناسه</string>
+    <string name="usbip_connection">اتصال</string>
+    <string name="usbip_class_interfaces">رده و رابط‌ها</string>
+    <string name="usbip_product">محصول</string>
+    <string name="usbip_serial">شمارهٔ سریال</string>
+    <string name="usbip_version">نسخه</string>
+    <string name="usbip_bus_id">شناسهٔ گذرگاه</string>
+    <string name="usbip_backend">بخش پشتیبان</string>
+    <string name="usbip_speed">سرعت</string>
+    <string name="usbip_bus_device">گذرگاه / دستگاه</string>
+    <string name="usbip_device_class">ردهٔ دستگاه</string>
+    <string name="usbip_configuration">پیکربندی</string>
+    <string name="usbip_interface">رابط %1$d</string>
+    <string name="usbip_notification_title">اشتراک‌گذاری USB/IP</string>
+    <string name="endpoint_status">وضعیت</string>
+    <string name="endpoint_state">حالت</string>
+    <string name="endpoint_authentication">احراز هویت</string>
+    <string name="endpoint_open_auth_url">باز کردن پیوند احراز هویت</string>
+    <string name="endpoint_open_auth_url_qr_code">نمایش کد QR پیوند احراز هویت</string>
+    <string name="endpoint_server">سرور</string>
+    <string name="endpoint_network">شبکه</string>
+    <string name="endpoint_cipher">رمز</string>
+    <string name="endpoint_flavor">گونه</string>
+    <string name="endpoint_transport">روش انتقال</string>
+    <string name="endpoint_connected">متصل</string>
+    <string name="endpoint_username">نام کاربری</string>
+    <string name="endpoint_password">گذرواژه</string>
+    <string name="endpoint_response">پاسخ</string>
+    <string name="endpoint_submit">ارسال</string>
+    <string name="endpoint_continue">ادامه</string>
+    <string name="endpoint_verifying">در حال بررسی</string>
+    <string name="endpoint_browser_navigation_failed">باز کردن صفحه در مرورگر ناموفق بود: %1$s</string>
+    <string name="endpoint_browser_too_many_windows">صفحهٔ احراز هویت پنجره‌های بیش از حد در مرورگر باز کرد.</string>
+    <string name="endpoint_browser_profile_unavailable">احراز هویت در مرورگر در این دستگاه در دسترس نیست.</string>
+    <string name="public_privileged_unavailable">یکپارچه‌سازی LSPosed در نسخهٔ عمومی در دسترس نیست. VPN و قواعد مسیریابی بدون آن کار می‌کنند.</string>
+    <plurals name="usbip_notification_text">
+        <item quantity="one">اشتراک‌گذاری %1$d دستگاه USB</item>
+        <item quantity="other">اشتراک‌گذاری %1$d دستگاه USB</item>
+    </plurals>
+</resources>

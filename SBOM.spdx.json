@@ -6996,6 +6996,363 @@
       ]
     },
     {
+      "name": "cel.dev/expr",
+      "SPDXID": "SPDXRef-Package-65748cca63a70fc247",
+      "versionInfo": "v0.25.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/cel.dev/expr@v0.25.2"
+        }
+      ]
+    },
+    {
+      "name": "cloud.google.com/go/auth",
+      "SPDXID": "SPDXRef-Package-b7824aefe91ecc3cb9",
+      "versionInfo": "v0.18.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/cloud.google.com/go/auth@v0.18.2"
+        }
+      ]
+    },
+    {
+      "name": "github.com/GoogleCloudPlatform/opentelemetry-operations-go/detectors/gcp",
+      "SPDXID": "SPDXRef-Package-b0bf10bb9c9e1adb07",
+      "versionInfo": "v1.33.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/github.com/GoogleCloudPlatform/opentelemetry-operations-go/detectors/gcp@v1.33.0"
+        }
+      ]
+    },
+    {
+      "name": "github.com/cncf/xds/go",
+      "SPDXID": "SPDXRef-Package-6bf5f7cf593d66fda8",
+      "versionInfo": "v0.0.0-20260202195803-dba9d589def2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/github.com/cncf/xds/go@v0.0.0-20260202195803-dba9d589def2"
+        }
+      ]
+    },
+    {
+      "name": "github.com/envoyproxy/go-control-plane/envoy",
+      "SPDXID": "SPDXRef-Package-d6cb4246adf0541cb0",
+      "versionInfo": "v1.37.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/github.com/envoyproxy/go-control-plane/envoy@v1.37.0"
+        }
+      ]
+    },
+    {
+      "name": "github.com/envoyproxy/protoc-gen-validate",
+      "SPDXID": "SPDXRef-Package-e44303d3e0f50ac71b",
+      "versionInfo": "v1.3.3",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/github.com/envoyproxy/protoc-gen-validate@v1.3.3"
+        }
+      ]
+    },
+    {
+      "name": "github.com/go-jose/go-jose/v4",
+      "SPDXID": "SPDXRef-Package-7b1947d2a79df84f28",
+      "versionInfo": "v4.1.4",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/github.com/go-jose/go-jose/v4@v4.1.4"
+        }
+      ]
+    },
+    {
+      "name": "github.com/googleapis/enterprise-certificate-proxy",
+      "SPDXID": "SPDXRef-Package-0737ef8600ef5f7839",
+      "versionInfo": "v0.3.11",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/github.com/googleapis/enterprise-certificate-proxy@v0.3.11"
+        }
+      ]
+    },
+    {
+      "name": "github.com/googleapis/gax-go/v2",
+      "SPDXID": "SPDXRef-Package-664c7277c3076ab2e7",
+      "versionInfo": "v2.17.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/github.com/googleapis/gax-go/v2@v2.17.0"
+        }
+      ]
+    },
+    {
+      "name": "github.com/spiffe/go-spiffe/v2",
+      "SPDXID": "SPDXRef-Package-8f236779551ddabfcc",
+      "versionInfo": "v2.7.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/github.com/spiffe/go-spiffe/v2@v2.7.0"
+        }
+      ]
+    },
+    {
+      "name": "go.opentelemetry.io/contrib/detectors/gcp",
+      "SPDXID": "SPDXRef-Package-28e533d0901c14de33",
+      "versionInfo": "v1.44.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/go.opentelemetry.io/contrib/detectors/gcp@v1.44.0"
+        }
+      ]
+    },
+    {
+      "name": "go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp",
+      "SPDXID": "SPDXRef-Package-6156c9acced11266fc",
+      "versionInfo": "v0.61.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp@v0.61.0"
+        }
+      ]
+    },
+    {
+      "name": "go.opentelemetry.io/otel",
+      "SPDXID": "SPDXRef-Package-92db5c630a604086d2",
+      "versionInfo": "v1.44.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/go.opentelemetry.io/otel@v1.44.0"
+        }
+      ]
+    },
+    {
+      "name": "go.opentelemetry.io/otel/metric",
+      "SPDXID": "SPDXRef-Package-c8c8c2826cd7a8b996",
+      "versionInfo": "v1.44.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/go.opentelemetry.io/otel/metric@v1.44.0"
+        }
+      ]
+    },
+    {
+      "name": "go.opentelemetry.io/otel/sdk",
+      "SPDXID": "SPDXRef-Package-a5d86ee02882507038",
+      "versionInfo": "v1.44.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.44.0"
+        }
+      ]
+    },
+    {
+      "name": "go.opentelemetry.io/otel/sdk/metric",
+      "SPDXID": "SPDXRef-Package-480127ac32bf50965a",
+      "versionInfo": "v1.44.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/go.opentelemetry.io/otel/sdk/metric@v1.44.0"
+        }
+      ]
+    },
+    {
+      "name": "go.opentelemetry.io/otel/trace",
+      "SPDXID": "SPDXRef-Package-78b0fd0cb5e8bab8bd",
+      "versionInfo": "v1.44.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/go.opentelemetry.io/otel/trace@v1.44.0"
+        }
+      ]
+    },
+    {
+      "name": "gonum.org/v1/gonum",
+      "SPDXID": "SPDXRef-Package-8658e65266e3eef1ab",
+      "versionInfo": "v0.17.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/gonum.org/v1/gonum@v0.17.0"
+        }
+      ]
+    },
+    {
+      "name": "google.golang.org/genproto/googleapis/api",
+      "SPDXID": "SPDXRef-Package-b3958571ca11a4058a",
+      "versionInfo": "v0.0.0-20260526163538-3dc84a4a5aaa",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/google.golang.org/genproto/googleapis/api@v0.0.0-20260526163538-3dc84a4a5aaa"
+        }
+      ]
+    },
+    {
+      "name": "google.golang.org/genproto/googleapis/rpc",
+      "SPDXID": "SPDXRef-Package-b698af6e15d000ba67",
+      "versionInfo": "v0.0.0-20260526163538-3dc84a4a5aaa",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/google.golang.org/genproto/googleapis/rpc@v0.0.0-20260526163538-3dc84a4a5aaa"
+        }
+      ]
+    },
+    {
+      "name": "google.golang.org/grpc",
+      "SPDXID": "SPDXRef-Package-ff5dea51386c2beaa9",
+      "versionInfo": "v1.83.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/google.golang.org/grpc@v1.83.1"
+        }
+      ]
+    },
+    {
       "name": "androidx.activity:activity",
       "SPDXID": "SPDXRef-Package-9af806c6f2c0ecc9f9",
       "versionInfo": "1.13.0",
@@ -11584,6 +11941,40 @@
           "referenceLocator": "pkg:generic/wireguard-go-awg@8a53421edf7edd2f60dbeab3bd6e49256eab4d04"
         }
       ]
+    },
+    {
+      "name": "sing-tun-lx",
+      "SPDXID": "SPDXRef-Package-4423c376c67a5a5a72",
+      "versionInfo": "f236400f3d29bc434f568db93602ef031f0b34cd",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "GPL-3.0-or-later",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:generic/sing-tun-lx@f236400f3d29bc434f568db93602ef031f0b34cd"
+        }
+      ]
+    },
+    {
+      "name": "gvisor-lx",
+      "SPDXID": "SPDXRef-Package-cdf559325f4b4a4a1d",
+      "versionInfo": "117243aa02fa2915cb53d1d4549bfca3a3ebf238",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:generic/gvisor-lx@117243aa02fa2915cb53d1d4549bfca3a3ebf238"
+        }
+      ]
     }
   ],
   "relationships": [
@@ -13640,6 +14031,111 @@
     {
       "spdxElementId": "SPDXRef-MyVPN",
       "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-65748cca63a70fc247"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-b7824aefe91ecc3cb9"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-b0bf10bb9c9e1adb07"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-6bf5f7cf593d66fda8"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-d6cb4246adf0541cb0"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-e44303d3e0f50ac71b"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-7b1947d2a79df84f28"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-0737ef8600ef5f7839"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-664c7277c3076ab2e7"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-8f236779551ddabfcc"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-28e533d0901c14de33"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-6156c9acced11266fc"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-92db5c630a604086d2"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-c8c8c2826cd7a8b996"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-a5d86ee02882507038"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-480127ac32bf50965a"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-78b0fd0cb5e8bab8bd"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-8658e65266e3eef1ab"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-b3958571ca11a4058a"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-b698af6e15d000ba67"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-ff5dea51386c2beaa9"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-Package-9af806c6f2c0ecc9f9"
     },
     {
@@ -14986,6 +15482,16 @@
       "spdxElementId": "SPDXRef-MyVPN",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-Package-9864b7215d2623d655"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-4423c376c67a5a5a72"
+    },
+    {
+      "spdxElementId": "SPDXRef-MyVPN",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-cdf559325f4b4a4a1d"
     }
   ]
 }

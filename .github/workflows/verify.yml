@@ -31,3 +31,6 @@ jobs:
       - name: Build corresponding sources and run JVM tests
         shell: pwsh
         run: ./build.ps1 -Native
+      - name: Android lint
+        shell: pwsh
+        run: ./client-source/gradlew.bat -p ./client-source --no-daemon :app:lintOtherDebug

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="local_network_permission_title">本地网络权限</string>
+    <string name="local_network_permission_description">Android 17 及更新版本需要本地网络权限才能访问 Wi-Fi 或以太网。Android 会在“附近设备”权限组中请求此权限。</string>
+    <string name="tailscale_ssh_close_session">关闭会话</string>
+    <string name="terminal_notification_channel">终端通知</string>
+    <string name="usbip_no_server">未找到 USB/IP 服务器</string>
+    <string name="usbip_no_devices">请选择一个 USB 设备，通过此 USB/IP 服务器共享。</string>
+    <string name="usbip_no_usb_devices">未连接 USB 设备</string>
+    <string name="usbip_connect_device">连接 USB 设备</string>
+    <string name="usbip_detach">断开</string>
+    <string name="usbip_state_attaching">正在连接…</string>
+    <string name="usbip_state_ready">就绪</string>
+    <string name="usbip_state_error">错误</string>
+    <string name="usbip_state_idle">空闲</string>
+    <string name="usbip_state_attached">已连接</string>
+    <string name="usbip_state_unavailable">不可用</string>
+    <string name="usbip_identity">标识</string>
+    <string name="usbip_connection">连接</string>
+    <string name="usbip_class_interfaces">类别和接口</string>
+    <string name="usbip_product">产品</string>
+    <string name="usbip_serial">序列号</string>
+    <string name="usbip_version">版本</string>
+    <string name="usbip_bus_id">总线标识</string>
+    <string name="usbip_backend">后端</string>
+    <string name="usbip_speed">速度</string>
+    <string name="usbip_bus_device">总线 / 设备</string>
+    <string name="usbip_device_class">设备类别</string>
+    <string name="usbip_configuration">配置</string>
+    <string name="usbip_interface">接口 %1$d</string>
+    <string name="usbip_notification_title">USB/IP 共享</string>
+    <string name="endpoint_status">状态</string>
+    <string name="endpoint_state">运行状态</string>
+    <string name="endpoint_authentication">身份验证</string>
+    <string name="endpoint_open_auth_url">打开身份验证链接</string>
+    <string name="endpoint_open_auth_url_qr_code">显示身份验证链接二维码</string>
+    <string name="endpoint_server">服务器</string>
+    <string name="endpoint_network">网络</string>
+    <string name="endpoint_cipher">加密算法</string>
+    <string name="endpoint_flavor">类型</string>
+    <string name="endpoint_transport">传输方式</string>
+    <string name="endpoint_connected">已连接</string>
+    <string name="endpoint_username">用户名</string>
+    <string name="endpoint_password">密码</string>
+    <string name="endpoint_response">响应</string>
+    <string name="endpoint_submit">提交</string>
+    <string name="endpoint_continue">继续</string>
+    <string name="endpoint_verifying">正在验证</string>
+    <string name="endpoint_browser_navigation_failed">浏览器页面打开失败：%1$s</string>
+    <string name="endpoint_browser_too_many_windows">身份验证页面打开了过多浏览器窗口。</string>
+    <string name="endpoint_browser_profile_unavailable">此设备不支持浏览器身份验证。</string>
+    <string name="public_privileged_unavailable">公开版本不提供 LSPosed 集成。VPN 和路由规则无需此集成即可使用。</string>
+    <plurals name="usbip_notification_text">
+        <item quantity="other">正在共享 %1$d 个 USB 设备</item>
+    </plurals>
+</resources>

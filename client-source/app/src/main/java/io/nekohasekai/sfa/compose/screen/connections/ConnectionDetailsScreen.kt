@@ -52,6 +52,8 @@ import io.nekohasekai.sfa.compose.topbar.LocalScaffoldPadding
 import io.nekohasekai.sfa.compose.util.rememberSheetDismissFromContentOnlyIfGestureStartedAtTopModifier
 import java.text.SimpleDateFormat
 import java.util.Date
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.core.os.ConfigurationCompat
 import java.util.Locale
 
 @Composable
@@ -63,7 +65,8 @@ fun ConnectionDetailsScreen(
     showHeader: Boolean = true,
     asSheet: Boolean = false,
 ) {
-    val dateTimeFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+    val locale = ConfigurationCompat.getLocales(LocalConfiguration.current)[0] ?: Locale.ROOT
+    val dateTimeFormat = remember(locale) { SimpleDateFormat("yyyy-MM-dd HH:mm:ss", locale) }
     var showMenu by remember { mutableStateOf(false) }
     val scrollState = rememberScrollState()
     val scrollModifier =

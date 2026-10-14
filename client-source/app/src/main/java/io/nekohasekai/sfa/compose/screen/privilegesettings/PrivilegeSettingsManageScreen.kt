@@ -49,6 +49,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -103,7 +104,12 @@ fun PrivilegeSettingsManageScreen(
     onBack: () -> Unit,
     serviceStatus: Status = Status.Stopped,
 ) {
+    if (!io.nekohasekai.sfa.myvpn.PublicCapabilities.privilegedIntegration) {
+        io.nekohasekai.sfa.compose.screen.settings.PublicPrivilegeUnavailableScreen(onBack)
+        return
+    }
     val context = LocalContext.current
+    val resources = LocalResources.current
     val focusManager = LocalFocusManager.current
     val coroutineScope = rememberCoroutineScope()
     val notifyApplyChange = rememberApplyServiceChangeNotifier(serviceStatus)
@@ -215,12 +221,12 @@ fun PrivilegeSettingsManageScreen(
             val labels = labelList.joinToString(listSeparator)
             messages +=
                 if (labelList.size == 1) {
-                    context.getString(
+                    resources.getString(
                         R.string.privilege_settings_risky_vpn_message_single,
                         labels,
                     )
                 } else {
-                    context.getString(
+                    resources.getString(
                         R.string.privilege_settings_risky_vpn_message_multi,
                         labels,
                     )
@@ -231,12 +237,12 @@ fun PrivilegeSettingsManageScreen(
             val labels = labelList.joinToString(listSeparator)
             messages +=
                 if (labelList.size == 1) {
-                    context.getString(
+                    resources.getString(
                         R.string.privilege_settings_risky_management_message_single,
                         labels,
                     )
                 } else {
-                    context.getString(
+                    resources.getString(
                         R.string.privilege_settings_risky_management_message_multi,
                         labels,
                     )

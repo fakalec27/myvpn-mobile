@@ -77,7 +77,8 @@ object DebugInfoExporter {
             outFile.delete()
             throw IllegalStateException(error)
         }
-        outFile.setReadable(true, false)
+        // Diagnostic archives can contain operational data. Do not make them public.
+        android.system.Os.chmod(outFile.absolutePath, 0x180) // 0600: owner read/write only
         if (warnings.isNotEmpty()) {
             Log.w(TAG, "export finished with ${warnings.size} warnings, output size: ${outFile.length()}")
         } else {
